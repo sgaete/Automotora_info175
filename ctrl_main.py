@@ -5,8 +5,6 @@ from PySide import QtGui
 from ui_main import Ui_Main
 from modelo.ctrl_modelo import Widget_modelo
 
-
-
 class Main(QtGui.QMainWindow):
     """
     Módulo principal del sistema
