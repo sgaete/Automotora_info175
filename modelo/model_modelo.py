@@ -61,35 +61,6 @@ def get_img(id_modelo, id_marca):
     return imagen
 
 
-"""
-def crear_alumno(rut, nombres, apellidos, correo=None):
-    con = conectar()
-    c = con.cursor()
-    sql = (
-        "INSERT INTO alumnos (rut, nombres, apellidos, correo)"
-        "VALUES (?, ?, ?, ?)")
-    c.execute(sql, (rut, nombres, apellidos, correo))
-    con.commit()
-
-
-def borrar(rut):
-    exito = False
-    con = conectar()
-    c = con.cursor()
-    query = "DELETE FROM alumnos WHERE rut = ?"
-    try:
-        resultado = c.execute(query, [rut])
-        con.commit()
-        exito = True
-    except sqlite3.Error as e:
-        exito = False
-        print "Error:", e.args[0]
-    con.close()
-    return exito
-"""
-
-
-
 
 
 
