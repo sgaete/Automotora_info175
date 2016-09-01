@@ -14,27 +14,52 @@ def get_all_modelos():
     con = connect()
     c = con.cursor()
     query = (
-        "SELECT * FROM modelo ORDER BY fecha_creacion")
+        "SELECT modelo.*, marca.nombre FROM modelo LEFT OUTER JOIN marca ON modelo.marca_id = marca.id;")
     result = c.execute(query)
     modelos = result.fetchall()
     con.close()
+    
     return modelos
 
 def get_marcas():
     con = connect()
     c = con.cursor()
-    query =(
-        "SELECT id, nombre FROM marca ORDER BY id")
+    query =("SELECT nombre FROM marca ORDER BY nombre")
     result = c.execute(query)
     marcas = result.fetchall()
     con.close()
     return marcas
 
-"""def filter_by_busca(cadena):
+def filter_by_busca(cadena):
+    cadena = "%"+cadena+"%"
     con = connect()
     c = con.cursor()
     query = (
-        "SELECT * FROM modelo WHERE ")"""
+        "SELECT modelo.*, marca.nombre FROM modelo LEFT OUTER JOIN marca ON modelo.marca_id = marca.id WHERE modelo.modelo LIKE ?;")
+    result = c.execute(query,[cadena])
+    modelos = result.fetchall()
+    con.close()
+    return modelos
+
+def filter_by_marca(marca):
+    con = connect()
+    c = con.cursor()
+    query = (
+        "SELECT modelo.*, marca.nombre FROM modelo LEFT OUTER JOIN marca ON modelo.marca_id = marca.id WHERE marca.nombre = ?;")
+    result = c.execute(query,[marca])
+    modelos = result.fetchall()
+    con.close()
+    return modelos
+
+def get_img(id_modelo, id_marca):
+    con = connect()
+    c = con.cursor()
+    query = ("SELECT archivo FROM imagen WHERE modelo_id = ? AND modelo_marca_id = ?;")
+    result = c.execute(query,[id_modelo, id_marca])
+    imagen = result.fetchone()[0]
+    con.close()
+    return imagen
+
 
 """
 def crear_alumno(rut, nombres, apellidos, correo=None):
