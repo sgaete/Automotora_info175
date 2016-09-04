@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Fri Aug 26 23:49:45 2016
-#      by: pyside-uic 0.2.15 running on PySide 1.2.1
+# Created: Sun Sep  4 04:28:48 2016
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -15,9 +15,8 @@ class Ui_Main(object):
         Main.resize(1280, 705)
         self.centralwidget = QtGui.QWidget(Main)
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
-        self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtGui.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(300, 10, 631, 171))
         font = QtGui.QFont()
         font.setFamily("Abyssinica SIL")
         font.setPointSize(14)
@@ -25,13 +24,18 @@ class Ui_Main(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setWordWrap(True)
         self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label)
+        self.label_2 = QtGui.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(220, 200, 1001, 441))
+        self.label_2.setText("")
+        self.label_2.setObjectName("label_2")
         Main.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(Main)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 27))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 25))
         self.menubar.setObjectName("menubar")
         self.menu = QtGui.QMenu(self.menubar)
         self.menu.setObjectName("menu")
+        self.menuAcerca_de = QtGui.QMenu(self.menubar)
+        self.menuAcerca_de.setObjectName("menuAcerca_de")
         Main.setMenuBar(self.menubar)
         self.actionMarcas = QtGui.QAction(Main)
         self.actionMarcas.setObjectName("actionMarcas")
@@ -45,6 +49,8 @@ class Ui_Main(object):
         self.actionCerrar_Sesi_n.setObjectName("actionCerrar_Sesi_n")
         self.actionSalir = QtGui.QAction(Main)
         self.actionSalir.setObjectName("actionSalir")
+        self.actionAcerca_de = QtGui.QAction(Main)
+        self.actionAcerca_de.setObjectName("actionAcerca_de")
         self.menu.addAction(self.actionMarcas)
         self.menu.addAction(self.actionModelos)
         self.menu.addAction(self.actionClientes)
@@ -52,19 +58,27 @@ class Ui_Main(object):
         self.menu.addSeparator()
         self.menu.addAction(self.actionCerrar_Sesi_n)
         self.menu.addAction(self.actionSalir)
+        self.menuAcerca_de.addAction(self.actionAcerca_de)
         self.menubar.addAction(self.menu.menuAction())
+        self.menubar.addAction(self.menuAcerca_de.menuAction())
 
         self.retranslateUi(Main)
         QtCore.QMetaObject.connectSlotsByName(Main)
 
     def retranslateUi(self, Main):
         Main.setWindowTitle(QtGui.QApplication.translate("Main", "Pantalla principal", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Main", "<html><head/><body><p>AQUI VA UNA IMAGEN BONITA!!!</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("Main", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:\'Abyssinica SIL\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" dir=\'rtl\' style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:48pt; font-weight:600;\">Automotora INFO175</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.menu.setTitle(QtGui.QApplication.translate("Main", "Menú", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuAcerca_de.setTitle(QtGui.QApplication.translate("Main", "Ayuda", None, QtGui.QApplication.UnicodeUTF8))
         self.actionMarcas.setText(QtGui.QApplication.translate("Main", "Marcas", None, QtGui.QApplication.UnicodeUTF8))
         self.actionModelos.setText(QtGui.QApplication.translate("Main", "Modelos", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClientes.setText(QtGui.QApplication.translate("Main", "Clientes", None, QtGui.QApplication.UnicodeUTF8))
         self.actionVentas.setText(QtGui.QApplication.translate("Main", "Ventas", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCerrar_Sesi_n.setText(QtGui.QApplication.translate("Main", "Cerrar Sesión", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSalir.setText(QtGui.QApplication.translate("Main", "Salir", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAcerca_de.setText(QtGui.QApplication.translate("Main", "Acerca de...", None, QtGui.QApplication.UnicodeUTF8))
 
