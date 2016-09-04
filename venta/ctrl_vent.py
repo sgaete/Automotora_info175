@@ -28,7 +28,7 @@ class Widget_vent(QtGui.QWidget):
     def add(self):
         self.ui.ui_from_vent = FormVenta(self)
         self.ui.ui_from_vent.accepted.connect(self.load_data)
-        self.ui.ui_from_vent.show()
+        self.ui.ui_from_vent.exec_()
 
 
 

@@ -13,15 +13,20 @@ class FormVenta(QtGui.QDialog):
 		self.ui.setupUi(self)
 		self.llenar_combobox_rut()
 		self.llenar_combobox1()
+		self.llenar_combobox2()
+		self.llenar_combobox3()
+		self.llenar_total_venta()
+		self.ui.precio_vent.setText(self.ui.precio_lista.text())
+
 
 		QtCore.QObject.connect(self.ui.marca, QtCore.SIGNAL("currentIndexChanged(QString)"), self.llenar_combobox2)
 		QtCore.QObject.connect(self.ui.modelo, QtCore.SIGNAL("currentIndexChanged(QString)"), self.llenar_combobox3)
-		QtCore.QObject.connect(self.ui.precio_lista, QtCore.SIGNAL("currentIndexChanged(QString)"), self.llenar_total_venta)
 		
 		self.ui.btn_aceptar.clicked.connect(self.crear_venta)
+		self.ui.btn_cancel.clicked.connect(self.close)
 
 	def crear_venta(self):
-		rut, marca, modelo, patente, color, precio_venta = self.obtener_datos()
+		rut, marca, modelo, patente, color, precio_venta = self.capturar_datos()
 		
 		model_vent.crear_venta(rut, marca, modelo, patente, color, precio_venta)
 		self.accepted.emit()
@@ -29,17 +34,33 @@ class FormVenta(QtGui.QDialog):
 		msgBox.setText(u"Venta realizada.")
 		msgBox.exec_()
 		self.close()
-	"""def obtener_datos(self):
-		rut = self.ui.rut.text()
-		marca = self.ui.marca.text()
-		modelo = self.ui.modelo.text()
-		patente = self.ui.patente.text()
+	def capturar_datos(self):
+		rut = self.ui.rut.currentText()
+		marca = self.ui.marca.currentText()
+		modelo = self.ui.modelo.currentText()
+		patente = self.ui.patente.text() 
 		color = self.ui.color.text()
-		
-
 		precio_venta = self.ui.precio_vent.text()
+		print patente
+		print "holaaaaa"
+		patente = patente.split(" ")
+		patente = filter(lambda x: x !='',patente)
+		patente = ''.join(patente)
+		print "chaoooo"
+		print patente
 
-		return (rut, marca, modelo, patente, color, precio_venta)"""
+		
+		if (len(patente) < 6) or (color =="") or (color.isspace()):
+			if (len(patente) < 6):
+				msgBox = QtGui.QMessageBox()
+				msgBox.setText(u"Patente Incorrecta.")
+				msgBox.exec_()
+			if color =="" or (color.isspace()):
+				msgBox = QtGui.QMessageBox()
+				msgBox.setText(u"Faltan Datos.")
+				msgBox.exec_()
+		else:
+			return (rut, marca, modelo, patente, color, precio_venta)
 
 	def llenar_combobox_rut(self):
 		clientes = model_db.obtenercliente()
@@ -69,13 +90,9 @@ class FormVenta(QtGui.QDialog):
 
 	def llenar_total_venta(self):
 		precio_lista = self.ui.precio_lista.text()
-		descuento = self.ui.descuento.value()
-		print "jajajajajaja"
-		print precio_lista
-		print descuento
-		print "jijijijijij"
-		tota_venta = int(precio_lista)-((int(precio_lista) *int(descuento))/100)
-		print tota_venta
-		color = self.ui.precio_vent.setText(str(tota_venta))
+		self.ui.descuento.valueChanged.connect(lambda: self.desc(self.ui.descuento.value(), int(precio_lista)))
 
+	def desc(self,a,b):
+		descuento = b-(b*a/100)
+		self.ui.precio_vent.setText(str(descuento))
 		
