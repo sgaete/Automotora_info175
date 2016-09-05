@@ -5,8 +5,8 @@ from PySide import QtGui
 from ui_main import Ui_Main
 from modelo.ctrl_modelo import Widget_modelo
 from marca.ctrl_marca import Widget_marca
-#from marca.ctrl_form import Widget_form
-import marca.model_marca as model_db
+from cliente.ctrl_cliente import Widget_cliente
+
 
 class Main(QtGui.QMainWindow):
 	"""
