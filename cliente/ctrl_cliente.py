@@ -68,7 +68,7 @@ class Widget_cliente(QtGui.QWidget):
 			return False
 		else:
 			msgBox = QtGui.QMessageBox()
-			result= msgBox.question(None, u"Eliminar", u"¿Está seguro de eliminar este registro?", QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
+			result= msgBox.question(None, u"Eliminar", u"Eliminar un registro es permanente.\n¿Desea continuar?", QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
 			if (result == 1024):#botón ok
 				rut = data.index(index.row(), 0, QtCore.QModelIndex()).data()
 				cant = db_model.consul_compra(rut)
@@ -76,23 +76,22 @@ class Widget_cliente(QtGui.QWidget):
 					if (db_model.borrar(rut)):
 						self.load_data()
 						msgBox = QtGui.QMessageBox()
-						msgBox.setText(u"El registro fue eliminado.")
-						msgBox.exec_()
+						msgBox.information(None, u"Eliminar", u"El registro fue eliminado.", QtGui.QMessageBox.Ok)
 						return True
 					else:
 						self.ui.errorMessageDialog = QtGui.QErrorMessage(self)
 						self.ui.errorMessageDialog.showMessage(u"Error al eliminar el registro.")
 						return False
 				else:
-					db_model.cambia_estado(rut)
-					self.load_data()
 					msgBox = QtGui.QMessageBox()
-					msgBox.setText(u"El registro fue eliminado.")
-					msgBox.exec_()
+					msgBox.information(None, u"Información", u"El cliente no puede ser eliminado,\n"
+						+u"porque tiene compras asociadas.\n"
+						+u"Si desea eliminar este cliente\n"
+						+u"debe dirigirse a ventas, y eliminar\n"
+						+u"las compras del cliente.", QtGui.QMessageBox.Ok)
 			else:
 				msgBox = QtGui.QMessageBox()
-				msgBox.setText(u"Se ha cancelado la operación.")
-				msgBox.exec_()
+				msgBox.information(None, u"Eliminar", u"Se ha cancelado la operación.", QtGui.QMessageBox.Ok)
 
 	def editar_cli(self):
 		data = self.ui.table_cli.model()

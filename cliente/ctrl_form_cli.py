@@ -38,7 +38,7 @@ class FormCliente(QtGui.QDialog):
 		try:
 			rut = int(rut)
 			telefono = int(telefono)
-			if (len(str(rut)) < 7 len(str(telefono)) < 9):
+			if (len(str(rut)) < 7 or len(str(telefono)) < 9):
 				msgBox = QtGui.QMessageBox()
 				msgBox.critical(None, u"Error", u"Dato inválido.", QtGui.QMessageBox.Ok)
 				return False

@@ -14,8 +14,8 @@ def obtener_clientes():
 	query = (
 		"SELECT cliente.*, COUNT(auto.cliente_rut) AS cantidad "
 		"FROM cliente LEFT OUTER JOIN auto ON cliente.rut = auto.cliente_rut "
-		"WHERE cliente.eliminado = ? GROUP BY cliente.rut;")
-	result = c.execute(query,["N"])
+		"GROUP BY cliente.rut;")
+	result = c.execute(query)
 	clientes = result.fetchall()
 	con.close()
 	return clientes
@@ -82,11 +82,3 @@ def consul_compra(rut):
 	dato = result.fetchone()
 	con.close()
 	return dato
-
-def cambia_estado(rut):
-	con = connect()
-	c = con.cursor()
-	query = "UPDATE cliente SET eliminado=? WHERE rut=?"
-	result = c.execute(query, ["S", rut])
-	con.commit()
-	con.close()
