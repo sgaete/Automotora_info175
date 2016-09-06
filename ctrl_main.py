@@ -47,7 +47,7 @@ class Main(QtGui.QMainWindow):
 
 	def load_venta(self):
 		main.setWindowTitle("Modulo Venta")
-		widget = Widget_venta(self)
+		widget = Widget_vent(self)
 		self.setCentralWidget(widget)
 
 	def logout(self):
