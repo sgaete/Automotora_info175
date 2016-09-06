@@ -121,8 +121,8 @@ class Widget_marca(QtGui.QWidget):
 			cm2 = int(cm1)
 
 			if(cm2!=0):
-				QtGui.QMessageBox.information(self, "Aviso", "Error al eliminar el registro ya que se encuentran modelos registrados para esa marca.")
-				return false
+				QtGui.QMessageBox.information(self, "Aviso", "Imposible eliminar el registro ya que se encuentran modelos registrados para esa marca.")
+				#return false
 			else:
 				if (cm2==0):						#si no hay modelos para esa marca lo eliminamos
 					
@@ -140,10 +140,10 @@ class Widget_marca(QtGui.QWidget):
 							os.remove(rutaa)						#eliminamos la imagen de la carpeta de logos
 							msgBox = QtGui.QMessageBox()		
 							msgBox.setWindowTitle("Estado de la marca")
-							msgBox.setText("EL registro de "+marca_eliminada+" fue eliminado satisfactoriamente.")
-							print "EL registro de "+marca_eliminada+" fue eliminado."
+							msgBox.setText("EL registro de "+marc_id+" fue eliminado satisfactoriamente.")
+							print "EL registro de "+marc_id+" fue eliminado."
 							msgBox.exec_()
-							return True
+							#return True
 					elif QtGui.QMessageBox.No:
 						print "Cuando este completamente seguro puede intentarlo nuevamente!"
 

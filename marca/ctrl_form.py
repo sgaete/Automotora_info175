@@ -56,21 +56,21 @@ class Widget_form(QtGui.QDialog):
 		b=False
 		uno=""
 		dos=""
-		print nn
+		#print nn
 		m = model_db.marca(nn)
 
 		if(m is None):
-			print "es nulo"
+			print "Es nulo (no se encuentran similitudes con otras marcas)"
 			b=True
 		else:
-			print m[0]
+			#print m[0]
 			uno = str(m[0]).strip()
 			uno = uno.lower()
-			print uno
+			#print uno
 			dos = nn.lower()
-			print dos
+			#print dos
 
-			print "uno="+uno+" dos="+dos
+			#print "uno="+uno+" dos="+dos
 
 		if(uno!=dos or b):
 			if(ii=="" or nn=="" or pp==""):
@@ -111,6 +111,7 @@ class Widget_form(QtGui.QDialog):
 	def editar_marca(self,marc_id):
 		imagen,nombre,pais = self.obtener_dato()
 		ii=imagen.strip()
+		ii2=ii
 		nn=nombre.strip()
 		pp=pais.strip()
 		if(ii=="" or nn=="" or pp==""):
@@ -124,29 +125,27 @@ class Widget_form(QtGui.QDialog):
 			i = imagen
 			n = nombre.upper()
 			p = pais.title()
-
-		print "Datos obtenidos:"
-		print "- Marca: "+nombre
-		print "- Pais: "+pais
-		print "- Direccion de la img: "+imagen    #################tratar la imagen y copiarla
-
-		ruta = os.getcwd() + os.sep
-		origen = imagen
-		destino = "marca/logos/"+nombre+".png"
-		#print origen
-		#print destino
-		try:
-		    shutil.copyfile(origen, destino)
-		    print("Logotipo copiado satisfactoriamente")
-		except:
-		    print("Se ha producido un error en el copiado del logo")
-		os.remove(ii)
-		model_db.edit_marca(imagen,nombre,pais,marc_id)
-		self.accepted.emit()
-		print "Edicion de la marca ha finalizado!"
-		print " - Marca: "+n
-		print " - Pais: "+p
-		print " - Ruta del logo: "+destino
+			print "Datos obtenidos:"
+			print "- Marca: "+nombre
+			print "- Pais: "+pais
+			print "- Direccion de la img: "+imagen    #################tratar la imagen y copiarla
+			ruta = os.getcwd() + os.sep
+			origen = imagen
+			destino = "marca/logos/"+nombre+".png"
+			#print origen
+			#print destino
+			try:
+			    shutil.copyfile(origen, destino)
+			    print("Logotipo copiado satisfactoriamente")
+			except:
+			    print("Se ha producido un error en el copiado del logo")
+			model_db.edit_marca(ii,nn,pp,marc_id)
+			self.accepted.emit()
+			print "Edicion de la marca ha finalizado!"
+			print " - Marca: "+nn
+			print " - Pais: "+pp
+			print " - Ruta del logo: "+destino
+		#os.remove(ii2)
 		self.close()
 
 	def abririmg(self):

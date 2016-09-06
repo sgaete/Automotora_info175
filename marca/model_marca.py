@@ -46,7 +46,7 @@ def cantModelMarca(marc_id):
 	c = con.cursor()
 	sql=("SELECT count(marca_id) as cantidad from marca left outer join modelo on marca.id = ? group by nombre")
 	result = c.execute(sql, [marc_id])
-	print "	 :	"+marc_id[0]
+	#print "	 :	"+marc_id[0]
 	cantidad = result.fetchall()
 	con.close()
 	#return cantidad
