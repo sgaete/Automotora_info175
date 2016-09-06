@@ -77,7 +77,6 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionClientes"/>
     <addaction name="actionVentas"/>
     <addaction name="separator"/>
-    <addaction name="actionCerrar_Sesi_n"/>
     <addaction name="actionSalir"/>
    </widget>
    <widget class="QMenu" name="menuAcerca_de">
