@@ -65,5 +65,5 @@ class Ui_widget_marca(object):
         self.btn_agrega_marc.setText(QtGui.QApplication.translate("widget_marca", "Agregar", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_edita_marc.setText(QtGui.QApplication.translate("widget_marca", "Editar", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_borra_marc.setText(QtGui.QApplication.translate("widget_marca", "Borrar", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_5.setText(QtGui.QApplication.translate("widget_marca", "Imagen", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_5.setText(QtGui.QApplication.translate("widget_marca", "", None, QtGui.QApplication.UnicodeUTF8))
 
