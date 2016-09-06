@@ -20,12 +20,14 @@ class Widget_vent(QtGui.QWidget):
         self.connect_signals()
 
     def connect_signals(self):
+    	"""captura la señal de los botones agregar venta y eliminar venta"""
         self.ui.btn_agregar_vent.clicked.connect(self.add)
         self.ui.btn_eliminar_vent.clicked.connect(self.delete)
        
 
 
     def add(self):
+    	"""Se despliega el formulario de vantas"""
         self.ui.ui_from_vent = FormVenta(self)
         self.ui.ui_from_vent.accepted.connect(self.load_data)
         self.ui.ui_from_vent.exec_()
@@ -34,7 +36,7 @@ class Widget_vent(QtGui.QWidget):
 
     def load_data(self):
         """
-        Función que carga la información de alumnos en la grilla
+        Función que carga la información de autos en la grilla
         """
         datos = model_db.obtener_datos()
         #Creamos el modelo asociado a la tabla
@@ -98,12 +100,9 @@ class Widget_vent(QtGui.QWidget):
 
     def delete(self):
         """
-        Función que intenta borrar un alumno de la base de datos e
+        Función que un autos de la base de datos e
         indica el resultado de la operación
         """
-
-        # ANTES DE REALIZAR LA ACCIÓN SE DEBERÍA PREGUNTAR
-        # AL USUARIO CONFIRMAR LA OPERACIÓN !!!!!!!!!!!!!!
         data = self.ui.table_vent.model()
         index = self.ui.table_vent.currentIndex()
         if index.row() == -1:  # No se ha seleccionado una fila

@@ -4,11 +4,13 @@
 import sqlite3
 
 def connect():
+	"""conecta la base de datis"""
 	con = sqlite3.connect('automotora.db')
 	con.row_factory = sqlite3.Row
 	return con
 
 def obtener_datos():
+	"""obtiene los datos de autos de la base de datos"""
 	con =connect()
 	c = con.cursor()
 	query ="SELECT cliente.rut,cliente.nombres, cliente.apellidos, modelo.modelo, marca.nombre AS marca, auto.patente ,auto.color, auto.precio_venta FROM auto INNER JOIN modelo ON auto.modelo_id = modelo.id INNER JOIN marca ON auto.modelo_marca_id= marca.id INNER JOIN cliente ON auto.cliente_rut = cliente.rut;"
@@ -18,6 +20,7 @@ def obtener_datos():
 	return autos
 
 def crear_venta(rut, marca, modelo, patente, color, precio_venta):
+	"""ingresa la venta a la base de dato"""
 	con = connect()
 	c = con.cursor()
 	marca_id = obtener_id_marca(marca)
@@ -27,6 +30,7 @@ def crear_venta(rut, marca, modelo, patente, color, precio_venta):
 	con.commit()
 
 def obtener_id_marca(marca):
+	"""obtiene el id de marca"""
 	con = connect()
 	c = con.cursor()
 	query = "select id from marca where  nombre = ?;"
@@ -37,6 +41,7 @@ def obtener_id_marca(marca):
 	return id_marca
 
 def obtener_id_modelo(modelo,marca):
+	"""obtiene el id del modelo y marca descrito"""
 	con = connect()
 	c = con.cursor()
 	query = "select id from modelo where   modelo = ? AND marca_id = ?;"
@@ -47,6 +52,7 @@ def obtener_id_modelo(modelo,marca):
 	return id_modelo
 
 def borrar(patente):
+	"""elimia de la base de datos ena venta segun la patente descrita"""
 	exito = False
 	con = connect()
 	c = con.cursor()
@@ -63,6 +69,7 @@ def borrar(patente):
 
 
 def obtenermarcas():
+	"""obtiene el nombre de todas las marcas desde la base de datos"""
 	con =connect()
 	c = con.cursor()
 	query ="SELECT nombre FROM marca;"
@@ -72,6 +79,7 @@ def obtenermarcas():
 	return s
 
 def obtenermodelos(marca):
+	"""obtiene el nombre de todos los modelos desde la base de datos"""
 	con =connect()
 	c = con.cursor()
 	query ="select modelo from modelo where marca_id = ?;"
@@ -82,6 +90,7 @@ def obtenermodelos(marca):
 	return s
 
 def obtenercliente():
+	"""obtiene el rut de todos los clientes desde la base de datos"""
 	con =connect()
 	c = con.cursor()
 	query ="select rut from cliente;"
@@ -91,6 +100,7 @@ def obtenercliente():
 	return s
 
 def obtener_precio(modelo):
+	"""obtiene el precio de un modelo desde la base de datos"""
 	con =connect()
 	c = con.cursor()
 	query ="select precio_lista from modelo where modelo = ?;"

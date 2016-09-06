@@ -26,6 +26,8 @@ class FormVenta(QtGui.QDialog):
 		self.ui.btn_cancel.clicked.connect(self.close)
 
 	def crear_venta(self):
+		"""este metodo es el encargado de crear una venta """
+
 		rut, marca, modelo, patente, color, precio_venta = self.capturar_datos()
 		
 		model_vent.crear_venta(rut, marca, modelo, patente, color, precio_venta)
@@ -35,19 +37,16 @@ class FormVenta(QtGui.QDialog):
 		msgBox.exec_()
 		self.close()
 	def capturar_datos(self):
+		"""Este metodo se encarga de obtener los datos desde la interfas grafica"""
 		rut = self.ui.rut.currentText()
 		marca = self.ui.marca.currentText()
 		modelo = self.ui.modelo.currentText()
 		patente = self.ui.patente.text() 
 		color = self.ui.color.text()
 		precio_venta = self.ui.precio_vent.text()
-		print patente
-		print "holaaaaa"
 		patente = patente.split(" ")
 		patente = filter(lambda x: x !='',patente)
 		patente = ''.join(patente)
-		print "chaoooo"
-		print patente
 
 		
 		if (len(patente) < 6) or (color =="") or (color.isspace()):
@@ -63,18 +62,21 @@ class FormVenta(QtGui.QDialog):
 			return (rut, marca, modelo, patente, color, precio_venta)
 
 	def llenar_combobox_rut(self):
+		"""Se cargan el rut de los clientes que se encuentran en la base de datos en el primer combobox"""
 		clientes = model_db.obtenercliente()
 		for cliente in clientes:
 			x =str(cliente['rut'])
 			self.ui.rut.addItem(x)	
 
 	def llenar_combobox1(self):
+		"""Se encarga de cargar las marcas que se encuentran en la base de datos en el segundo combobox"""
 		marcas = model_db.obtenermarcas()
 		for marca in marcas:
 			self.ui.marca.addItem(marca['nombre'])	
 		
 
 	def llenar_combobox2(self):
+		"""Se encarga de cargar los modelos que se encuentran el la base de datos segun la marca de el segundo combobox"""
 		self.ui.modelo.clear()
 		marca = self.ui.marca.currentText()
 		modelos = model_db.obtenermodelos(marca)
@@ -82,6 +84,7 @@ class FormVenta(QtGui.QDialog):
 			self.ui.modelo.addItem(modelo['modelo'])
 
 	def llenar_combobox3(self):
+		"""Se cargan los datos del precio de lista del modelo que se encuentra seleccionado en el combobox de modelos""" 
 		self.ui.precio_lista.clear()
 		modelo = self.ui.modelo.currentText()
 		precio = model_db.obtener_precio(modelo)['precio_lista']
@@ -89,10 +92,12 @@ class FormVenta(QtGui.QDialog):
 		self.llenar_total_venta()
 
 	def llenar_total_venta(self):
+		"""Se obtiene el valor de la venta total"""
 		precio_lista = self.ui.precio_lista.text()
 		self.ui.descuento.valueChanged.connect(lambda: self.desc(self.ui.descuento.value(), int(precio_lista)))
 
 	def desc(self,a,b):
+		"""realisa un descuento"""
 		descuento = b-(b*a/100)
 		self.ui.precio_vent.setText(str(descuento))
 		
