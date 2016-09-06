@@ -50,9 +50,6 @@ class Main(QtGui.QMainWindow):
 		widget = Widget_vent(self)
 		self.setCentralWidget(widget)
 
-	def logout(self):
-		print "Cerrando sesion..."
-
 	def acercade(self):
 		main.setWindowTitle("Acerca de")
 		print "Acerca de ... "

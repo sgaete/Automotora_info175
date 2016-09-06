@@ -78,7 +78,6 @@ class Ui_Main(object):
         self.actionModelos.setText(QtGui.QApplication.translate("Main", "Modelos", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClientes.setText(QtGui.QApplication.translate("Main", "Clientes", None, QtGui.QApplication.UnicodeUTF8))
         self.actionVentas.setText(QtGui.QApplication.translate("Main", "Ventas", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionCerrar_Sesi_n.setText(QtGui.QApplication.translate("Main", "Cerrar Sesión", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSalir.setText(QtGui.QApplication.translate("Main", "Salir", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAcerca_de.setText(QtGui.QApplication.translate("Main", "Acerca de...", None, QtGui.QApplication.UnicodeUTF8))
 
