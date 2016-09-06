@@ -27,7 +27,6 @@ class Main(QtGui.QMainWindow):
 		self.ui.actionClientes.triggered.connect(self.load_cliente)
 		self.ui.actionVentas.triggered.connect(self.load_venta)
 		self.ui.actionAcerca_de.triggered.connect(self.acercade)
-		self.ui.actionCerrar_Sesi_n.triggered.connect(exit)
 		self.ui.actionSalir.triggered.connect(exit)
 
 	def load_modelo(self):
