@@ -1,83 +1,71 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+import sys
+from PySide import QtGui
+from ui_main import Ui_Main
+from modelo.ctrl_modelo import Widget_modelo
+from marca.ctrl_marca import Widget_marca
+from cliente.ctrl_cliente import Widget_cliente
+from venta.ctrl_vent import Widget_vent
 
-# Form implementation generated from reading ui file 'main.ui'
-#
-# Created: Mon Sep  5 22:29:42 2016
-#      by: pyside-uic 0.2.15 running on PySide 1.2.2
-#
-# WARNING! All changes made in this file will be lost!
+class Main(QtGui.QMainWindow):
+	"""
+	Módulo principal del sistema
+	"""
+	def __init__(self):
+		super(Main, self).__init__()
+		self.ui = Ui_Main()   
+		self.ui.setupUi(self)
+		# Cargamos las acciones al presionar el menú
+		self.menu_actions()
+		self.show()
 
-from PySide import QtCore, QtGui
+	def menu_actions(self):
+		self.ui.label_2.setPixmap(QtGui.QPixmap("banner/3.png")) 
+		self.ui.actionModelos.triggered.connect(self.load_modelo)
+		self.ui.actionMarcas.triggered.connect(self.load_marca)
+		self.ui.actionClientes.triggered.connect(self.load_cliente)
+		self.ui.actionVentas.triggered.connect(self.load_venta)
+		self.ui.actionAcerca_de.triggered.connect(self.acercade)
+		self.ui.actionCerrar_Sesi_n.triggered.connect(self.logout)
+		self.ui.actionSalir.triggered.connect(exit)
 
-class Ui_Main(object):
-    def setupUi(self, Main):
-        Main.setObjectName("Main")
-        Main.resize(1280, 705)
-        self.centralwidget = QtGui.QWidget(Main)
-        self.centralwidget.setObjectName("centralwidget")
-        self.label = QtGui.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(300, 10, 631, 171))
-        font = QtGui.QFont()
-        font.setFamily("Abyssinica SIL")
-        font.setPointSize(14)
-        self.label.setFont(font)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setWordWrap(True)
-        self.label.setObjectName("label")
-        self.label_2 = QtGui.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(220, 200, 1001, 441))
-        self.label_2.setText("")
-        self.label_2.setObjectName("label_2")
-        Main.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(Main)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 25))
-        self.menubar.setObjectName("menubar")
-        self.menu = QtGui.QMenu(self.menubar)
-        self.menu.setObjectName("menu")
-        self.menuAcerca_de = QtGui.QMenu(self.menubar)
-        self.menuAcerca_de.setObjectName("menuAcerca_de")
-        Main.setMenuBar(self.menubar)
-        self.actionMarcas = QtGui.QAction(Main)
-        self.actionMarcas.setObjectName("actionMarcas")
-        self.actionModelos = QtGui.QAction(Main)
-        self.actionModelos.setObjectName("actionModelos")
-        self.actionClientes = QtGui.QAction(Main)
-        self.actionClientes.setObjectName("actionClientes")
-        self.actionVentas = QtGui.QAction(Main)
-        self.actionVentas.setObjectName("actionVentas")
-        self.actionCerrar_Sesi_n = QtGui.QAction(Main)
-        self.actionCerrar_Sesi_n.setObjectName("actionCerrar_Sesi_n")
-        self.actionSalir = QtGui.QAction(Main)
-        self.actionSalir.setObjectName("actionSalir")
-        self.actionAcerca_de = QtGui.QAction(Main)
-        self.actionAcerca_de.setObjectName("actionAcerca_de")
-        self.menu.addAction(self.actionMarcas)
-        self.menu.addAction(self.actionModelos)
-        self.menu.addAction(self.actionClientes)
-        self.menu.addAction(self.actionVentas)
-        self.menu.addSeparator()
-        self.menu.addAction(self.actionSalir)
-        self.menuAcerca_de.addAction(self.actionAcerca_de)
-        self.menubar.addAction(self.menu.menuAction())
-        self.menubar.addAction(self.menuAcerca_de.menuAction())
+	def load_modelo(self):
+		main.setWindowTitle("Modulo Modelo")
+		widget = Widget_modelo(self)
+		self.setCentralWidget(widget)
 
-        self.retranslateUi(Main)
-        QtCore.QMetaObject.connectSlotsByName(Main)
+	def load_marca(self):
+		main.setWindowTitle("Modulo Marca")
+		widget = Widget_marca(self)
+		self.setCentralWidget(widget)
 
-    def retranslateUi(self, Main):
-        Main.setWindowTitle(QtGui.QApplication.translate("Main", "Pantalla principal", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("Main", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Abyssinica SIL\'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" dir=\'rtl\' style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:48pt; font-weight:600;\">Automotora INFO175</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.menu.setTitle(QtGui.QApplication.translate("Main", "Menú", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuAcerca_de.setTitle(QtGui.QApplication.translate("Main", "Ayuda", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionMarcas.setText(QtGui.QApplication.translate("Main", "Marcas", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionModelos.setText(QtGui.QApplication.translate("Main", "Modelos", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionClientes.setText(QtGui.QApplication.translate("Main", "Clientes", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionVentas.setText(QtGui.QApplication.translate("Main", "Ventas", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionCerrar_Sesi_n.setText(QtGui.QApplication.translate("Main", "Cerrar Sesión", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSalir.setText(QtGui.QApplication.translate("Main", "Salir", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionAcerca_de.setText(QtGui.QApplication.translate("Main", "Acerca de...", None, QtGui.QApplication.UnicodeUTF8))
+	def load_cliente(self):
+		main.setWindowTitle("Modulo Cliente")
+		widget = Widget_cliente(self)
+		self.setCentralWidget(widget)
 
+	def load_venta(self):
+		main.setWindowTitle("Modulo Venta")
+		widget = Widget_venta(self)
+		self.setCentralWidget(widget)
+
+	def logout(self):
+		print "Cerrando sesion..."
+
+	def acercade(self):
+		main.setWindowTitle("Acerca de")
+		print "Acerca de ... "
+		msg = QtGui.QMessageBox()
+		msg.setWindowTitle("Acerca de")
+		msg.setText("Integrantes: \n- Camilo Alexander Alarcon Romero\n- Sebastian Andres Gaete Velasquez\n- Lucia Berenice Marquez Esprel\n- Cristian Alonso Ordonez Figueroa\n\n"
+			"Profesor: \n- Cristian Rojas Perez\n\n"
+			"Asignatura: \n- Info175 - Taller de Construccion de Software\n\n"
+			"Ingenieria Civil en Informatica, Universidad Austral de Chile, Valdivia, 2016\n\n")
+		msg.exec_()
+		msg.show()
+
+if __name__ == '__main__':
+	app = QtGui.QApplication(sys.argv)
+	main = Main()
+	sys.exit(app.exec_())
