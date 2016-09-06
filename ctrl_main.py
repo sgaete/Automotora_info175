@@ -6,7 +6,7 @@ from ui_main import Ui_Main
 from modelo.ctrl_modelo import Widget_modelo
 from marca.ctrl_marca import Widget_marca
 from cliente.ctrl_cliente import Widget_cliente
-
+from venta.ctrl_vent import Widget_vent
 
 class Main(QtGui.QMainWindow):
 	"""
@@ -47,7 +47,7 @@ class Main(QtGui.QMainWindow):
 
 	def load_venta(self):
 		main.setWindowTitle("Modulo Venta")
-		widget = Widget_venta(self)
+		widget = Widget_vent(self)
 		self.setCentralWidget(widget)
 
 	def logout(self):
